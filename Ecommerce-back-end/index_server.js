@@ -10,7 +10,7 @@ const db = require('./config/mongoose');
 app.use(bodyParser())
 
 
-app.use('/', require('./routes/routes_index'));
+app.use('/api', require('./routes/routes_index'));
 
 const port = process.env.PORT 
 app.listen(port, (err)=>{
