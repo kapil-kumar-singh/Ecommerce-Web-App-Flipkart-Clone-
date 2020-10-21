@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken'); 
 
+
 module.exports.sing_up = function(req, res){
     // console.log('here',req.body);
    User.findOne({email : req.body.email}, function(err, user){
@@ -36,8 +37,7 @@ module.exports.sing_up = function(req, res){
 };
 
 module.exports.sign_in = async function(req,res){
-    console.log('ok3');
-    console.log(req.body);
+    // console.log(req.body);
     
     try{
 
