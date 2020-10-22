@@ -1,4 +1,4 @@
-const Category = require('../models/category_models');
+const Category = require('../models/category_model');
 const slugify =require('slugify');
 
 function makeCategoryList(categories, parentId=null){

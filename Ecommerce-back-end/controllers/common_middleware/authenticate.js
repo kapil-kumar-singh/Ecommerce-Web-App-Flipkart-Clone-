@@ -17,7 +17,7 @@ module.exports.requireSignIn = function(req, res, next){
 }
 
 module.exports.isAdmin = (req, res, next)=>{
-    console.log(req.user)
+    // console.log(req.user)
     if(req.user.role !== 'admin'){
         return res.status(400).json({
             message: 'Admin Access denied'
@@ -28,7 +28,7 @@ module.exports.isAdmin = (req, res, next)=>{
 }
 
 module.exports.isUser = (req, res, next)=>{
-    console.log(req.user)
+    // console.log(req.user)
     if(req.user.role !== 'admin'){
         return res.status(400).json({
             message: 'User Access denied'
