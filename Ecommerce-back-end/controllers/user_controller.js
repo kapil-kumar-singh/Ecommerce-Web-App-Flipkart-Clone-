@@ -50,7 +50,7 @@ module.exports.sign_in = async function(req,res){
         }
 
         if(user.authentication(req.body.password)){
-            const token = jwt.sign({_id: user._id},process.env.jwt_secret_key, {expiresIn:"1h"})
+            const token = jwt.sign({_id: user._id, role: user.role },process.env.jwt_secret_key, {expiresIn:"1h"})
             const { _id, firstName, lastName, email, role, fullname} = user;
             return res.status(200).json({
                 token,
@@ -65,11 +65,4 @@ module.exports.sign_in = async function(req,res){
         })
     }
 };
-
-module.exports.checkAuth = function(req, res, next){
-    const token = req.headers.authorization.split(' ')[1];
-    const user = jwt.verify(token, process.env.jwt_secret_key);
-    req.user = user;
-    next();
-}
 

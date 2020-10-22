@@ -1,14 +1,12 @@
 const express = require('express');
 const env = require('dotenv').config({path : './config/.env'});
-const bodyParser = require('body-parser');
 
 const app = express();
 const db = require('./config/mongoose');
 
 // app.use(express.urlencoded());
 
-app.use(bodyParser())
-
+app.use(express.json())
 
 app.use('/api', require('./routes/routes_index'));
 

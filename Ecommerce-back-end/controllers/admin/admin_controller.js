@@ -2,7 +2,7 @@ const User = require('../../models/user');
 const jwt = require('jsonwebtoken'); 
 
 module.exports.sing_up = function(req, res){
-    console.log('here',req.body);
+    // console.log('here',req.body);
    User.findOne({email : req.body.email}, function(err, user){
         if(err){console.log('Error in finding user in sign up', err); return;}
        
@@ -37,8 +37,7 @@ module.exports.sing_up = function(req, res){
 };
 
 module.exports.sign_in = async function(req,res){
-    console.log('ok3');
-    console.log(req.body);
+    // console.log(req.body);
     
     try{
 
@@ -51,7 +50,7 @@ module.exports.sign_in = async function(req,res){
         }
 
         if(user.authentication(req.body.password) && user.role === 'admin'){
-            const token = jwt.sign({_id: user._id},process.env.jwt_secret_key, {expiresIn:"1h"})
+            const token = jwt.sign({_id: user._id, role: user.role},process.env.jwt_secret_key, {expiresIn:"1h"})
             const { _id, firstName, lastName, email, role, fullname} = user;
             return res.status(200).json({
                 token,
@@ -70,11 +69,4 @@ module.exports.sign_in = async function(req,res){
         })
     }
 };
-
-module.exports.checkAuth = function(req, res, next){
-    const token = req.headers.authorization.split(' ')[1];
-    const user = jwt.verify(token, process.env.jwt_secret_key);
-    req.user = user;
-    next();
-}
 
