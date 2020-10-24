@@ -12,5 +12,6 @@ router.get('/profile', authenticate.requireSignIn, (req,res)=>{
     })
 })
 
+router.use('/cart', require('./cart'));
 
 module.exports = router;

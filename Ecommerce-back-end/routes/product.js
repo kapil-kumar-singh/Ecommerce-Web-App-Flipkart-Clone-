@@ -14,11 +14,11 @@ const storage = multer.diskStorage({
       cb(null, path.join(__dirname, '..', '/upload/product'))
     },
     filename: function (req, file, cb) {
-      cb(null, shortid.generate() + '-' + file.originalname + '-' + Date.now())
+      cb(null, shortid.generate() + '-' + file.originalname )
     }
   })
    
-const upload = multer({ storage })
+const upload = multer({ storage : storage})
 
 
 router.post('/create', requireSignIn, isAdmin, upload.array('productPicture'),createProduct);
