@@ -1,5 +1,6 @@
 const express = require('express');
 const env = require('dotenv').config({path : './config/.env'});
+const path = require('path');
 
 const app = express();
 const db = require('./config/mongoose');
@@ -8,6 +9,7 @@ const db = require('./config/mongoose');
 
 app.use(express.json())
 
+app.use('/public', express.static(path.join(__dirname, 'upload/product')));
 app.use('/api', require('./routes/routes_index'));
 
 const port = process.env.PORT 

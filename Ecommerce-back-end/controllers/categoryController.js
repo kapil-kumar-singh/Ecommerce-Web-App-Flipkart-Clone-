@@ -16,6 +16,7 @@ function makeCategoryList(categories, parentId=null){
             _id: cate._id,
             name: cate.name,
             slug: cate.slug,
+            categoryImage: cate.categoryImage,
             children: makeCategoryList(categories, cate._id)
         })
     }
@@ -28,6 +29,11 @@ module.exports.createCategory = function(req,res){
         name: req.body.name,
         slug: slugify(req.body.name)
     }
+
+    if(req.file){
+        cotegoryObj.categoryImage = process.env.API + '/public/' + req.file.filename;
+    }
+
     if(req.body.parentId){
         cotegoryObj.parentId = req.body.parentId;
     }
