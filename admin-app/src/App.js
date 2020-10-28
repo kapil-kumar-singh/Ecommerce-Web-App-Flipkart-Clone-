@@ -7,6 +7,8 @@ import Home from "./containers/home";
 import Signin from "./containers/singin";
 import Signup from "./containers/singup";
 import { isUserLoggedIn} from "./actions/auth_action";
+import Products from './containers/products';
+import Orders from './containers/orders';
 
 
 
@@ -27,6 +29,9 @@ function App() {
     <div className="App">
         <Switch>
           <PrivateRoute path="/" exact component={Home} />
+          <PrivateRoute path="/products" component={Products} />
+          <PrivateRoute path="/orders" component={Orders} />
+
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
         </Switch>

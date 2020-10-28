@@ -52,6 +52,7 @@ module.exports.sign_in = async function(req,res){
         if(user.authentication(req.body.password) && user.role === 'admin'){
             const token = jwt.sign({_id: user._id, role: user.role},process.env.jwt_secret_key, {expiresIn:"1h"})
             const { _id, firstName, lastName, email, role, fullname} = user;
+            res.cookie('token', token, { expiresIn: '1h' } )
             return res.status(200).json({
                 token,
                 user: { _id, firstName, lastName, email, role, fullname}
@@ -70,3 +71,9 @@ module.exports.sign_in = async function(req,res){
     }
 };
 
+exports.sign_out = (req, res) => {
+    res.clearCookie('token');
+    res.status(200).json(({
+        message: 'SignOut successfully...!'
+    }))
+}
