@@ -22,7 +22,7 @@ const Header = (props) => {
         return (
             <Nav>
                 <li className="nav-item">
-                    <span className="nav-link" onClick={logout}>Singin</span>
+                    <span className="nav-link" onClick={logout}>Singout</span>
                 </li>
             </Nav>
         )

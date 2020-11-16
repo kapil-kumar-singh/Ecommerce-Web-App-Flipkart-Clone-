@@ -63,6 +63,7 @@ export const signout = () => {
         dispatch({type: authConstants.LOGOUT_REQUEST});
 
         const res = await axios.post('/admin/sign-out');
+        console.log(res)
 
         if(res.status === 200){
             localStorage.clear();
